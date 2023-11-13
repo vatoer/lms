@@ -1,4 +1,5 @@
-install prisma on dev dependency
+
+# Install Prisma as a dev dependency
 
 ```sh
 pnpm add -D prisma
