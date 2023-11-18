@@ -7,5 +7,6 @@ pnpm dlx shadcn-ui@latest add input
 pnpm dlx shadcn-ui@latest add textarea
 pnpm dlx shadcn-ui@latest add popover
 pnpm dlx shadcn-ui@latest add command
+pnpm dlx shadcn-ui@latest add badge
 
 ```
