@@ -25,8 +25,8 @@ model Course {
   Category   Category? @relation(fields: [categoryId], references: [id])
 
   attachments Attachment[]
-  Chapters    Chapter[]
-  Purchases   Purchase[]
+  chapters    Chapter[]
+  purchases   Purchase[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
