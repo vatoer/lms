@@ -10,6 +10,7 @@ import {
 import { redirect } from "next/navigation";
 import AttachmentForm from "./_components/atttachment-form";
 import CategoryForm from "./_components/category-form";
+import ChaptersForm from "./_components/chapters-form";
 import DescriptionForm from "./_components/description-form";
 import ImageForm from "./_components/image-form";
 import PriceForm from "./_components/price-form";
@@ -23,8 +24,11 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
   }
 
   const course = await db.course.findUnique({
-    where: { id: params.courseId },
+    where: { id: params.courseId, userId: userId },
     include: {
+      chapters: {
+        orderBy: { position: "desc" },
+      },
       attachments: {
         orderBy: { createdAt: "asc" },
       },
@@ -48,6 +52,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     course.imageUrl,
     course.price,
     course.categoryId,
+    course.chapters.some((chapter) => chapter.isPublished),
   ];
 
   const totalFields = requiredField.length;
@@ -89,7 +94,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
               <IconBadge icon={ListChecks} />
               <h2 className="text-xl">Course Chapter</h2>
             </div>
-            <div> TODO: Chapter</div>
+            <ChaptersForm initialData={course} courseId={course.id} />
           </div>
           <div>
             <div className="flex items-center gap-x-2">
