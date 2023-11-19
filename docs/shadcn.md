@@ -9,5 +9,6 @@ pnpm dlx shadcn-ui@latest add popover
 pnpm dlx shadcn-ui@latest add command
 pnpm dlx shadcn-ui@latest add badge
 pnpm dlx shadcn-ui@latest add checkbox
+pnpm dlx shadcn-ui@latest add alert-dialog
 
 ```
