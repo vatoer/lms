@@ -6,11 +6,15 @@ async function main() {
   try {
     await db.category.createMany({
       data: [
-        { name: "Electronics" },
-        { name: "Books" },
-        { name: "Clothes" },
-        { name: "Furniture" },
-        { name: "Other" },
+        { name: "Art" },
+        { name: "Business" },
+        { name: "Education" },
+        { name: "Entertainment" },
+        { name: "Music" },
+        { name: "Photography" },
+        { name: "Programming" },
+        { name: "Sports" },
+        { name: "Engineering" },
       ],
     });
     console.log("seeded categories");
