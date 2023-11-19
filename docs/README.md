@@ -8,3 +8,5 @@ pnpm add react-quill
 
 pnpm add @mux/mux-node
 pnpm add @mux/mux-player-react
+pnpm add zustand
+pnpm add react-confetti
