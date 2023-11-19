@@ -42,7 +42,7 @@ const Actions = ({ disabled, courseId, isPublished }: ActionsProps) => {
   const onDelete = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/teacher/courses/${courseId}`);
+      await axios.delete(`/api/courses/${courseId}`);
       toast.success("Course Deleted successfully.");
       router.refresh();
       router.push(`/teacher/courses`);
