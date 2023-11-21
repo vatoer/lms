@@ -40,7 +40,7 @@ export const getChapter = async ({
     });
 
     if (!chapter || !course) {
-      throw new Error("Chapter not found");
+      throw new Error("Chapter or course not found");
     }
 
     let muxData = null;
@@ -50,7 +50,7 @@ export const getChapter = async ({
     if (purchase) {
       attachments = await db.attachment.findMany({
         where: {
-          courseId,
+          courseId: courseId,
         },
       });
     }
@@ -58,42 +58,44 @@ export const getChapter = async ({
     if (chapter.isFree || purchase) {
       muxData = await db.muxData.findUnique({
         where: {
-          chapterId,
+          chapterId: chapterId,
         },
       });
+
       nextChapter = await db.chapter.findFirst({
         where: {
-          courseId,
+          courseId: courseId,
+          isPublished: true,
           position: {
-            gt: chapter.position,
+            gt: chapter?.position,
           },
         },
         orderBy: {
           position: "asc",
         },
       });
-
-      const userProgress = await db.userProgress.findUnique({
-        where: {
-          userId_chapterId: {
-            userId,
-            chapterId,
-          },
-        },
-      });
-
-      return {
-        chapter,
-        course,
-        muxData,
-        attachments,
-        nextChapter,
-        userProgress,
-        purchased: purchase,
-      };
     }
+
+    const userProgress = await db.userProgress.findUnique({
+      where: {
+        userId_chapterId: {
+          userId,
+          chapterId,
+        },
+      },
+    });
+
+    return {
+      chapter,
+      course,
+      muxData,
+      attachments,
+      nextChapter,
+      userProgress,
+      purchase,
+    };
   } catch (error) {
-    console.error("[GET_CHAPTER]", error);
+    console.log("[GET_CHAPTER]", error);
     return {
       chapter: null,
       course: null,
@@ -101,7 +103,7 @@ export const getChapter = async ({
       attachments: [],
       nextChapter: null,
       userProgress: null,
-      purchased: null,
+      purchase: null,
     };
   }
 };
