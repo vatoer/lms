@@ -29,7 +29,7 @@ const CourseIdPage = async ({ params }: { params: { courseId: string } }) => {
     where: { id: params.courseId, userId: userId },
     include: {
       chapters: {
-        orderBy: { position: "desc" },
+        orderBy: { position: "asc" },
       },
       attachments: {
         orderBy: { createdAt: "asc" },
