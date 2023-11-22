@@ -13,6 +13,7 @@ pnpm dlx shadcn-ui@latest add alert-dialog
 pnpm dlx shadcn-ui@latest add table
 pnpm add @tanstack/react-table
 pnpm dlx shadcn-ui@latest add dropdown-menu
+pnpm dlx shadcn-ui@latest add separator
 
 
 

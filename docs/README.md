@@ -13,3 +13,5 @@ pnpm add react-confetti
 
 pnpm add query-string
 pnpm add react-icons
+
+muxplayer
