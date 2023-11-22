@@ -1,7 +1,9 @@
 import { getChapter } from "@/actions/get-chapters";
 import Banner from "@/components/banner";
 import { auth } from "@clerk/nextjs";
+import { Video } from "lucide-react";
 import { redirect } from "next/navigation";
+import { VideoPlayer } from "./_components/video-player";
 
 const ChapterIdPage = async ({
   params,
@@ -50,6 +52,19 @@ const ChapterIdPage = async ({
           label="you need to purchase this course to view this chapter"
         />
       )}
+      <div className="flex flex-col max-w-4xl mx-auto pb-20">
+        <div className="p-4">
+          <VideoPlayer
+            chapterId={params.chapterId}
+            title={chapter.title}
+            courseId={params.courseId}
+            nextChapterId={nextChapter?.id}
+            playbackId={muxData?.playbackId!}
+            isLocked={isLocked}
+            completeOnEnd={completeOnEnd}
+          />
+        </div>
+      </div>
     </div>
   );
 };
