@@ -15,3 +15,6 @@ pnpm add query-string
 pnpm add react-icons
 
 muxplayer
+
+
+pnpm add stripe
